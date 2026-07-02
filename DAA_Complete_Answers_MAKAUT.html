@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Design & Analysis of Algorithms complete answer key for MAKAUT ES-CS401 / PCC-CS404. Covers 2022-23, 2023-24, and 2024-25 papers.">
+<title>DAA Complete Answers — ES-CS401 MAKAUT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Modern Design System ── */
+  :root {
+    --bg: #f7f7f9;
+    --surface: #ffffff;
+    --surface-2: #f1f3f5;
+    --border: #dee2e6;
+    --border-light: #e9ecef;
+    --text: #212529;
+    --text-2: #495057;
+    --muted: #868e96;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-mid: #bfdbfe;
+    --green: #15803d;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --amber: #92400e;
+    --amber-bg: #fffbeb;
+    --amber-border: #fde68a;
+    --red: #991b1b;
+    --red-bg: #fef2f2;
+    --code-bg: #f8f9fa;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    --transition: 0.18s ease;
+    --header-bg: rgba(247, 247, 249, 0.92);
+  }
+
+  /* ── Dark Mode Tokens ── */
+  [data-theme="dark"] {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface-2: #222636;
+    --border: #2e3347;
+    --border-light: #252838;
+    --text: #e8eaf0;
+    --text-2: #9da3b4;
+    --muted: #636b80;
+    --accent: #6094f8;
+    --accent-light: #1a2a4a;
+    --accent-mid: #2a3f6a;
+    --green: #4ade80;
+    --green-bg: #0d2318;
+    --green-border: #166534;
+    --amber: #fbbf24;
+    --amber-bg: #1c1400;
+    --amber-border: #78350f;
+    --red: #f87171;
+    --red-bg: #1f0a0a;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.4);
+    --header-bg: rgba(15, 17, 23, 0.92);
+  }
+
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Base ── */
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.25s ease, color 0.25s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  /* ── Custom Scrollbar (Webkit) ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 99px;
+    transition: background 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  ::-webkit-scrollbar-corner { background: transparent; }
+
+  /* ── Layout ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.25rem 5rem;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.25rem 0;
+    margin: 0 -1.25rem;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+  }
+  h1 {
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .byline {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── Theme Toggle Button ── */
+  .theme-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text-2);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background var(--transition), border-color var(--transition), transform 0.2s ease;
+    line-height: 1;
+  }
+  .theme-btn:hover {
+    background: var(--border);
+    transform: rotate(15deg) scale(1.08);
+  }
+  .theme-btn:active { transform: scale(0.93); }
+
+  /* ── Year Tabs ── */
+  .year-tabs {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0;
+  }
+  .year-tabs::-webkit-scrollbar { display: none; }
+  .ytab {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1px;
+    background: none;
+    transition: color var(--transition), border-color var(--transition);
+    font-family: var(--font);
+    letter-spacing: 0.01em;
+  }
+  .ytab:hover { color: var(--text); }
+  .ytab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+  /* ── Content spacing ── */
+  .year-panel { display: none; padding-top: 1.5rem; }
+  .year-panel.active { display: block; }
+
+  /* ── Group Labels ── */
+  .group-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .group-label:first-child { margin-top: 0; }
+
+  /* ── QA Accordion ── */
+  .qa {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 6px;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition);
+  }
+  .qa:hover { box-shadow: var(--shadow-md); }
+  .qa-head {
+    padding: 11px 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .qa-head:hover { background: var(--surface-2); }
+  .qa-head:active { background: var(--border-light); }
+  .qa-q {
+    font-size: 13.5px;
+    font-weight: 500;
+    flex: 1;
+    color: var(--text);
+    line-height: 1.45;
+  }
+  .qa-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .qa-marks {
+    font-size: 10.5px;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+    background: var(--surface-2);
+    padding: 2px 7px;
+    border-radius: 999px;
+    border: 1px solid var(--border-light);
+  }
+  .qa-chevron {
+    color: var(--muted);
+    font-size: 14px;
+    transition: transform 0.22s ease;
+    line-height: 1;
+  }
+  .qa-chevron.open { transform: rotate(180deg); }
+
+  /* ── Accordion Body ── */
+  .qa-body {
+    display: none;
+    padding: 0 14px 14px;
+    border-top: 1px solid var(--border-light);
+    animation: slideIn 0.18s ease;
+  }
+  .qa-body.open { display: block; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Answer Content ── */
+  .ans { padding-top: 12px; }
+  .ans p { margin-bottom: 9px; font-size: 14px; color: var(--text-2); }
+  .ans p:last-child { margin-bottom: 0; }
+  .ans > p:first-child { color: var(--text); }
+
+  /* ── Code ── */
+  code, pre { font-family: var(--font-mono); }
+  pre {
+    background: #1e2028;
+    color: #abb2bf;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin: 10px 0;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.6;
+    font-size: 12.5px;
+    border: 1px solid #2d3139;
+    -webkit-overflow-scrolling: touch;
+  }
+  .inline-code {
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  /* ── Chips ── */
+  .chip {
+    display: inline-block;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    margin-right: 5px;
+    letter-spacing: 0.04em;
+  }
+  .chip-t { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .chip-f { background: var(--red-bg);   color: var(--red);   border: 1px solid #fecaca; }
+  .chip-a { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-mid); }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px 0; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 320px; }
+  th {
+    background: var(--surface-2);
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(0,0,0,.015); }
+
+  /* ── Steps ── */
+  .step {
+    display: flex;
+    gap: 10px;
+    margin: 5px 0;
+    font-size: 13.5px;
+    color: var(--text-2);
+  }
+  .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid var(--accent-mid);
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-txt { flex: 1; line-height: 1.5; }
+
+  /* ── Callout Boxes ── */
+  .note {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
+    margin: 10px 0;
+    font-size: 13px;
+    color: var(--amber);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .note::before { content: '⚠'; flex-shrink: 0; }
+  .result {
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
+    margin: 10px 0;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .result::before { content: '✓'; flex-shrink: 0; }
+
+  /* ── Typography ── */
+  strong { font-weight: 600; color: var(--text); }
+  em { font-style: italic; color: var(--muted); }
+  ul, ol { padding-left: 1.35rem; margin: 8px 0; }
+  li { margin-bottom: 4px; font-size: 14px; color: var(--text-2); }
+  .math { font-style: italic; font-family: Georgia, serif; }
+
+  /* ── Responsive — Tablet ── */
+  @media (max-width: 640px) {
+    body { font-size: 14px; }
+    .page { padding: 0 0.85rem 4rem; }
+    .site-header { padding: 0.75rem 0.85rem 0; margin: 0 -0.85rem; }
+    .header-top { flex-direction: column; gap: 0.4rem; padding-bottom: 0.5rem; }
+    h1 { font-size: 15px; }
+    .subtitle { white-space: normal; }
+    .ytab { padding: 7px 12px; font-size: 12px; }
+    .qa-head { padding: 10px 11px; }
+    .qa-q { font-size: 13px; }
+    .qa-body { padding: 0 11px 12px; }
+    pre { font-size: 11.5px; padding: 10px 11px; }
+    .ans p { font-size: 13.5px; }
+    li { font-size: 13.5px; }
+  }
+
+  /* ── Responsive — Mobile ── */
+  @media (max-width: 420px) {
+    .page { padding: 0 0.65rem 4rem; }
+    .site-header { padding: 0.6rem 0.65rem 0; margin: 0 -0.65rem; }
+    h1 { font-size: 14px; }
+    .badge { display: none; }
+    .qa-marks { display: none; }
+    .qa-q { font-size: 12.5px; }
+    pre { font-size: 11px; padding: 9px 10px; }
+    .group-label { font-size: 10px; }
+    table { font-size: 12px; }
+    th, td { padding: 5px 8px; }
+  }
+
+  /* ── Scroll-to-top fab ── */
+  #topBtn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(37,99,235,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s, transform 0.25s;
+    z-index: 200;
+    pointer-events: none;
+  }
+  #topBtn.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="site-header">
+    <div class="header-top">
+      <div>
+        <h1>Design &amp; Analysis of Algorithms</h1>
+        <p class="subtitle">ES-CS401 / PCC-CS404 &nbsp;·&nbsp; MAKAUT &nbsp;·&nbsp; 2022–25</p>
+        <p class="byline">made by debankan</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <span class="badge">📚 Complete Answer Key</span>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" onclick="toggleTheme()">🌙</button>
+      </div>
+    </div>
+    <div class="year-tabs">
+      <button class="ytab active" onclick="showYear('y25')">2024–25</button>
+      <button class="ytab" onclick="showYear('y24')">2023–24</button>
+      <button class="ytab" onclick="showYear('y23')">2022–23</button>
+    </div>
+  </header>
+
+  <!-- ============ 2024-25 ============ -->
+  <div id="y25" class="year-panel active">
+
+    <div class="group-label">Group A — Very Short Answer (1 mark each)</div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(I) Approximation ratio is always ≤ 1 — True or False?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><span class="chip chip-f">FALSE</span></p>
+          <p>For <strong>minimization</strong> problems, the approximation ratio = Algorithm's output / OPT ≥ 1 (since the approximation cannot be better than optimal).<br>For <strong>maximization</strong> problems, ratio = OPT / Algorithm's output ≥ 1 (or stated as ≤ 1 if defined inversely). Either way it is NOT always ≤ 1 in the standard definition.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(II) O(2ⁿ) > O(n²) for n > 3 — True or False?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><span class="chip chip-t">TRUE</span></p>
+          <p>Exponential growth dominates polynomial growth. For n = 4: 2⁴ = 16 vs 4² = 16 (equal). For n = 5: 32 vs 25. Beyond n = 4, 2ⁿ always exceeds n². The asymptotic class O(2ⁿ) is larger (harder) than O(n²).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(III) Time complexity of Job Sequencing with Deadline (Greedy)?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>O(n²)</strong> — with a simple array-based slot search (for each of n jobs, scan backward through up to n slots).</p>
+          <p><em>With Union-Find optimization: O(n log n) dominated by the initial sort.</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(IV) Topological sorting is performed on ___ graph.</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>Directed Acyclic Graph (DAG)</strong></p>
+          <p>It requires: (1) directed edges, and (2) no cycles. The result is a linear ordering of vertices such that for every directed edge u → v, u appears before v.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(V) f(n) = 2n³ + 4n², then f(n) = O(n³) — True or False?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><span class="chip chip-t">TRUE</span></p>
+          <p>The dominant term is 2n³. For c = 3, n₀ = 4: 2n³ + 4n² ≤ 3n³ holds for all n ≥ 4. Therefore by Big-O definition, f(n) = O(n³).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(VI) Time complexity of Prim's algorithm (V vertices)?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>O(V²)</strong> using adjacency matrix &nbsp;|&nbsp; <strong>O(E log V)</strong> using binary min-heap (priority queue)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(VII) Best case time complexity of Linear Search?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans"><p><strong>O(1)</strong> — the target element is found at the very first position.</p></div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(VIII) Time complexity of Kruskal's algorithm (E edges)?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>O(E log E)</strong> — sorting all E edges dominates. Equivalently O(E log V) since E ≤ V². Union-Find operations take nearly O(E·α(V)) ≈ O(E).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(IX) DFS uses ___ data structure.</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans"><p><strong>Stack</strong> (LIFO — either explicit or via the recursion call stack).</p></div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(X) Give two examples of Optimization Problems.</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <ol>
+            <li><strong>Travelling Salesman Problem (TSP)</strong> — minimize the total cost of a Hamiltonian tour.</li>
+            <li><strong>Fractional Knapsack Problem</strong> — maximize total profit within a given weight limit.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(XI) Worst case time complexity of Heap Sort?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans"><p><strong>O(n log n)</strong> — same for best, average, and worst case. Building the heap: O(n). Extracting n elements: O(n log n).</p></div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">(XII) Space complexity of Merge Sort?</span>
+        <span class="qa-marks">1 mark</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans"><p><strong>O(n)</strong> — auxiliary array of size n is needed during the merge step.</p></div>
+      </div>
+    </div>
+
+    <div class="group-label">Group B — Short Answer (5 marks each, attempt any 3)</div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q2: Little-oh (o) notation + Prove log n! = O(n log n)</span>
+        <span class="qa-marks">5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>Little-oh (o) notation:</strong></p>
+          <p>f(n) = o(g(n)) means: for <em>every</em> positive constant c > 0, there exists n₀ such that 0 ≤ f(n) < c · g(n) for all n ≥ n₀.</p>
+          <p>Equivalently: <span class="math">lim(n→∞) f(n)/g(n) = 0</span></p>
+          <p>It is a <strong>strict upper bound</strong> — g grows strictly faster than f. Unlike Big-O (which may be tight), little-o is always strict.</p>
+          <p><strong>Example:</strong> n = o(n²) because n/n² = 1/n → 0.</p>
+
+          <p><strong>Proof: log n! = O(n log n)</strong></p>
+          <pre>log n! = log 1 + log 2 + log 3 + ... + log n
+
+Each term: log k ≤ log n  for all 1 ≤ k ≤ n
+
+Therefore:
+log n! = Σ(k=1 to n) log k ≤ Σ(k=1 to n) log n = n · log n
+
+So: log n! ≤ n · log n
+
+By Big-O definition (c=1, n₀=1):
+log n! = O(n log n)  ✓</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q3: Optimization Problem vs Decision Problem + Non-Polynomial algorithm examples</span>
+        <span class="qa-marks">5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>Optimization Problem:</strong> Find the best feasible solution (maximize or minimize an objective function).<br>Example: "Find the shortest path from A to B." "Maximize profit in knapsack."</p>
+          <p><strong>Decision Problem:</strong> Answer is YES or NO.<br>Example: "Is there a path from A to B with cost ≤ k?" Every optimization problem has a corresponding decision version. NP-completeness theory is defined in terms of decision problems.</p>
+          <p><strong>Two examples of Non-Polynomial (NP) algorithms:</strong></p>
+          <ol>
+            <li><strong>Travelling Salesman Problem (brute force)</strong> — checks all n! permutations → O(n! · n), which is super-exponential.</li>
+            <li><strong>0-1 Knapsack (brute force)</strong> — checks all 2ⁿ subsets of items → O(2ⁿ).</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q4: Properties of an Algorithm</span>
+        <span class="qa-marks">5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <ol>
+            <li><strong>Input:</strong> An algorithm takes zero or more inputs, externally supplied.</li>
+            <li><strong>Output:</strong> At least one quantity (result) must be produced.</li>
+            <li><strong>Definiteness:</strong> Every step must be precisely and unambiguously defined — no ambiguity about what to do next.</li>
+            <li><strong>Finiteness:</strong> The algorithm must terminate after a finite number of steps for all inputs.</li>
+            <li><strong>Effectiveness:</strong> Each step must be basic, feasible, and executable in a finite time — no abstract steps requiring infinite resources.</li>
+          </ol>
+          <p><em>Additional properties often expected:</em></p>
+          <ul>
+            <li><strong>Correctness:</strong> Produces the right output for all valid inputs.</li>
+            <li><strong>Efficiency:</strong> Uses minimal time and space resources.</li>
+            <li><strong>Generality:</strong> Works for a range of inputs, not just special cases.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q5: Fractional Knapsack — P={16,60,150,25,150}, W={4,10,50,5,75}, m=44</span>
+        <span class="qa-marks">5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>Step 1: Calculate profit/weight ratio for each item:</strong></p>
+          <table>
+            <tr><th>Item</th><th>Profit</th><th>Weight</th><th>P/W Ratio</th></tr>
+            <tr><td>1</td><td>16</td><td>4</td><td>4.0</td></tr>
+            <tr><td>2</td><td>60</td><td>10</td><td>6.0 ⬆ highest</td></tr>
+            <tr><td>3</td><td>150</td><td>50</td><td>3.0</td></tr>
+            <tr><td>4</td><td>25</td><td>5</td><td>5.0</td></tr>
+            <tr><td>5</td><td>150</td><td>75</td><td>2.0</td></tr>
+          </table>
+          <p><strong>Step 2: Sort by ratio descending:</strong> Item 2 (6.0) → Item 4 (5.0) → Item 1 (4.0) → Item 3 (3.0) → Item 5 (2.0)</p>
+          <p><strong>Step 3: Greedy selection (capacity = 44):</strong></p>
+          <table>
+            <tr><th>Pick</th><th>Item</th><th>Fraction</th><th>Weight Added</th><th>Profit Added</th><th>Remaining Capacity</th></tr>
+            <tr><td>1</td><td>2</td><td>Full (1.0)</td><td>10</td><td>60</td><td>34</td></tr>
+            <tr><td>2</td><td>4</td><td>Full (1.0)</td><td>5</td><td>25</td><td>29</td></tr>
+            <tr><td>3</td><td>1</td><td>Full (1.0)</td><td>4</td><td>16</td><td>25</td></tr>
+            <tr><td>4</td><td>3</td><td>25/50 = 0.5</td><td>25</td><td>75</td><td>0</td></tr>
+          </table>
+          <div class="result">Solution vector: x = [1, 1, 0.5, 1, 0] &nbsp;|&nbsp; Maximum Profit = 60 + 25 + 16 + 75 = 176</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q6: Recurrence T(n) = 3T(n/4) + cn² using Recursion Tree Method</span>
+        <span class="qa-marks">5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>Step 1: Build the recursion tree:</strong></p>
+          <pre>Level 0:        cn²                     (1 node, cost = cn²)
+Level 1:   c(n/4)² × 3               = 3cn²/16
+Level 2:   c(n/16)² × 9              = 9cn²/256
+Level i:   c(n/4ⁱ)² × 3ⁱ            = (3/16)ⁱ × cn²</pre>
+          <p><strong>Step 2: Identify the ratio:</strong> ratio r = 3/16 < 1 → convergent geometric series</p>
+          <p><strong>Step 3: Sum all levels:</strong></p>
+          <pre>Total cost = cn² × Σ(i=0 to ∞) (3/16)ⁱ
+           = cn² × 1/(1 − 3/16)
+           = cn² × 16/13
+           = O(n²)</pre>
+          <p><strong>Step 4: Count levels:</strong> Recursion bottoms out when n/4ⁱ = 1 → i = log₄n. Leaves = 3^(log₄n) = n^(log₄3) ≈ n^0.79</p>
+          <p>Since n^0.79 < n², the <strong>root level dominates</strong>.</p>
+          <div class="result">T(n) = O(n²)</div>
+          <div class="note">Verify with Master Theorem: a=3, b=4, f(n)=cn². n^(log₄3) ≈ n^0.79. Since f(n)=n² = Ω(n^(0.79+ε)), Case 3 applies → T(n)=Θ(n²) ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-label">Group C — Long Answer (15 marks each, attempt any 3)</div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q7: Quick Sort — Algorithm + Best/Worst/Average complexity</span>
+        <span class="qa-marks">5 + 10 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>(a) Algorithm:</strong></p>
+          <pre>QUICKSORT(A, low, high):
+  if low < high:
+    pi = PARTITION(A, low, high)
+    QUICKSORT(A, low, pi − 1)
+    QUICKSORT(A, pi + 1, high)
+
+PARTITION(A, low, high):
+  pivot = A[high]
+  i = low − 1
+  for j = low to high − 1:
+    if A[j] ≤ pivot:
+      i = i + 1
+      swap(A[i], A[j])
+  swap(A[i+1], A[high])
+  return i + 1</pre>
+          <p><strong>(b) Time Complexity Analysis:</strong></p>
+          <p><strong>Best Case — O(n log n):</strong> Pivot always splits array in two equal halves.</p>
+          <pre>T(n) = 2T(n/2) + O(n)
+By Master Theorem (Case 2): T(n) = O(n log n)</pre>
+          <p><strong>Worst Case — O(n²):</strong> Pivot is always the smallest or largest (sorted/reverse-sorted input).</p>
+          <pre>T(n) = T(n−1) + T(0) + O(n) = T(n−1) + O(n)
+     = O(n) + O(n−1) + ... + O(1) = O(n²)</pre>
+          <p><strong>Average Case — O(n log n):</strong> Pivot is equally likely to be any of the k elements.</p>
+          <pre>T(n) = (1/n) × Σ(k=0 to n−1) [T(k) + T(n−k−1)] + O(n)
+Solving: T(n) = O(n log n)</pre>
+          <p>Space: O(log n) average recursion stack, O(n) worst. Not stable. In-place.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q8: Approximation — Absolute/Relative + Vertex Cover problem + Algorithm + Illustration</span>
+        <span class="qa-marks">4+4+3+4 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>(a) Absolute vs Relative Approximation:</strong></p>
+          <p><strong>Absolute Approximation:</strong> An algorithm A has absolute approximation bound k if |A(I) − OPT(I)| ≤ k for all instances I. The absolute error is bounded by a constant, regardless of OPT size. Rare — very few problems admit this.</p>
+          <p><strong>Relative Approximation:</strong> An algorithm A has approximation ratio ρ(n) if for all instances I of size n:<br>
+            For minimization: A(I)/OPT(I) ≤ ρ(n)<br>
+            For maximization: OPT(I)/A(I) ≤ ρ(n)<br>
+            where ρ(n) ≥ 1. Most practical approximation algorithms are of this type.</p>
+
+          <p><strong>(b) Vertex Cover Problem:</strong></p>
+          <p>A <strong>vertex cover</strong> of graph G=(V,E) is a subset C ⊆ V such that for every edge (u,v) ∈ E, at least one of u or v is in C.</p>
+          <p>The <strong>Minimum Vertex Cover Problem</strong>: find the smallest such C. It is NP-hard.</p>
+          <p>Example: In a triangle A−B−C, the set {A,B} is a vertex cover (covers edge AB, edge BC via B, edge AC via A). The minimum vertex cover has size 2.</p>
+
+          <p><strong>(c) 2-Approximation Algorithm for Vertex Cover:</strong></p>
+          <pre>APPROX-VERTEX-COVER(G):
+  C = {}                    // empty cover
+  E' = copy of G.E          // working set of edges
+  while E' is not empty:
+    let (u, v) be any edge in E'
+    C = C ∪ {u, v}          // add both endpoints
+    remove from E' all edges
+      incident on u or v
+  return C</pre>
+          <p><strong>Why it's a 2-approximation:</strong> The edges selected form a matching (no two share an endpoint). Every matching edge requires at least one endpoint in OPT. So |OPT| ≥ |matching|, while |C| = 2×|matching|. Hence |C| ≤ 2×|OPT|.</p>
+
+          <p><strong>(d) Illustration:</strong> For graph with vertices A,B,C,D,E,F,G:<br>
+          The algorithm picks an uncovered edge, adds both its endpoints to C, removes all incident edges, and repeats until all edges are covered. The resulting C satisfies |C| ≤ 2 × |optimal vertex cover|.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q9: Big-O proofs — sum rule, product rule + x^n in O(log n)</span>
+        <span class="qa-marks">4+4+4+3 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>(a) Prove f₁(n) + f₂(n) = O(max(g₁(n), g₂(n))):</strong></p>
+          <pre>Given: f₁(n) = O(g₁(n)) → ∃ c₁, n₁: f₁(n) ≤ c₁·g₁(n) ∀n ≥ n₁
+       f₂(n) = O(g₂(n)) → ∃ c₂, n₂: f₂(n) ≤ c₂·g₂(n) ∀n ≥ n₂
+
+For n ≥ max(n₁, n₂):
+f₁(n) + f₂(n) ≤ c₁·g₁(n) + c₂·g₂(n)
+             ≤ c₁·max(g₁,g₂) + c₂·max(g₁,g₂)
+             = (c₁+c₂) · max(g₁(n), g₂(n))
+
+Let c = c₁+c₂, n₀ = max(n₁,n₂).
+∴ f₁(n)+f₂(n) = O(max(g₁(n), g₂(n)))  ✓</pre>
+
+          <p><strong>(b) Prove f₁(n) × f₂(n) = O(g₁(n) × g₂(n)):</strong></p>
+          <pre>f₁(n) ≤ c₁·g₁(n)  ∀n ≥ n₁  (from f₁ = O(g₁))
+f₂(n) ≤ c₂·g₂(n)  ∀n ≥ n₂  (from f₂ = O(g₂))
+
+Since all functions are non-negative:
+f₁(n) × f₂(n) ≤ c₁·g₁(n) × c₂·g₂(n)
+              = (c₁·c₂) × g₁(n)×g₂(n)
+
+Let c = c₁×c₂, n₀ = max(n₁,n₂).
+∴ f₁(n)×f₂(n) = O(g₁(n)×g₂(n))  ✓</pre>
+
+          <p><strong>(c) Algorithm to compute xⁿ in O(log n) [n is an integral power of 2]:</strong></p>
+          <pre>POWER(x, n):
+  if n == 1:
+    return x
+  half = POWER(x, n/2)    // since n is power of 2, n/2 is exact
+  return half × half</pre>
+
+          <p><strong>(d) Time complexity is O(log n):</strong></p>
+          <pre>Recurrence: T(n) = T(n/2) + O(1)
+
+Using Master Theorem: a=1, b=2, f(n)=O(1)
+n^(log₂1) = n⁰ = 1 = Θ(1) = Θ(f(n))  → Case 2
+T(n) = Θ(log n) = O(log n)  ✓
+
+Intuitively: we halve n each time → log₂n recursive calls.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q10: Hamiltonian Cycles (backtracking) + TSP Branch & Bound + Bin-Packing</span>
+        <span class="qa-marks">4+6+5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>(a) Hamiltonian Cycle Algorithm using Backtracking:</strong></p>
+          <pre>HAMILTONIAN(G, path[], pos):
+  if pos == V:                        // all vertices included
+    if edge(path[pos−1], path[0]):    // can close the cycle?
+      print path[] + path[0]          // print the Hamiltonian cycle
+    return
+  for v = 1 to V:
+    if isSafe(v, path, pos, G):
+      path[pos] = v
+      HAMILTONIAN(G, path, pos+1)
+      path[pos] = −1                  // BACKTRACK
+
+isSafe(v, path, pos, G):
+  if no edge from path[pos−1] to v: return false
+  for i = 0 to pos−1:
+    if path[i] == v: return false     // already visited
+  return true
+
+Main:
+  path[0] = 0  (start from vertex 0)
+  HAMILTONIAN(G, path, 1)</pre>
+
+          <p><strong>(b) TSP using Branch and Bound:</strong></p>
+          <p>For the given graph (A,B,C,D with edge weights), the steps are:</p>
+          <div class="step"><span class="step-num">1.</span><span class="step-txt">Write the cost matrix. Set diagonal and already-forbidden edges to ∞.</span></div>
+          <div class="step"><span class="step-num">2.</span><span class="step-txt"><strong>Row reduction:</strong> Subtract the minimum of each row from all entries in that row. Sum all minima = row reduction cost.</span></div>
+          <div class="step"><span class="step-num">3.</span><span class="step-txt"><strong>Column reduction:</strong> Subtract the minimum of each column. Sum all minima = column reduction cost.</span></div>
+          <div class="step"><span class="step-num">4.</span><span class="step-txt"><strong>Lower bound at root</strong> = row reduction cost + column reduction cost.</span></div>
+          <div class="step"><span class="step-num">5.</span><span class="step-txt">Branch on each edge: for edge (i,j), set row i and col j to ∞, set (j,i)=∞ (no reverse), re-reduce matrix. New bound = parent bound + cost(i,j) + new reductions.</span></div>
+          <div class="step"><span class="step-num">6.</span><span class="step-txt">Use Best-First (lowest lower bound) or DFS. Prune nodes whose bound ≥ current best complete tour.</span></div>
+          <div class="step"><span class="step-num">7.</span><span class="step-txt">When a leaf (complete tour) is found, update the best solution. Return the minimum cost tour.</span></div>
+          <div class="note">For the graph in the paper: Start → compute cost matrix from the given edges (weights 2,3,4,5,6,7,10,11,12,18). Apply row+column reduction. Expand the most promising branch at each step.</div>
+
+          <p><strong>(c) Bin-Packing Problem:</strong></p>
+          <p>Given n items with sizes s₁, s₂, …, sₙ (each 0 < sᵢ ≤ 1) and bins of unit capacity 1, pack all items into the <strong>minimum number of bins</strong>.</p>
+          <p>It is NP-hard. Common approximation strategies:</p>
+          <table>
+            <tr><th>Algorithm</th><th>Strategy</th><th>Ratio</th></tr>
+            <tr><td>Next Fit (NF)</td><td>Place in current bin if fits, else open new bin</td><td>≤ 2 × OPT</td></tr>
+            <tr><td>First Fit (FF)</td><td>Place in first bin with enough space</td><td>≤ 1.7 × OPT</td></tr>
+            <tr><td>First Fit Decreasing (FFD)</td><td>Sort items descending, then apply FF</td><td>≤ (11/9) × OPT + 6/9</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa">
+      <div class="qa-head" onclick="toggle(this)">
+        <span class="qa-q">Q11: Graph Coloring — definition + algorithm + polynomial? + trace with 3 colors</span>
+        <span class="qa-marks">2+5+3+5 marks</span>
+        <span class="qa-chevron">▾</span>
+      </div>
+      <div class="qa-body">
+        <div class="ans">
+          <p><strong>(a) Graph Coloring Problem:</strong></p>
+          <p>Assign colors from a set {1, 2, …, m} to vertices of G=(V,E) such that no two adjacent vertices share the same color. The <strong>chromatic number χ(G)</strong> is the minimum m for which this is possible. The decision version: "Can G be colored with ≤ k colors?" is NP-complete for k ≥ 3.</p>
+
+          <p><strong>(b) Backtracking Algorithm for Graph Coloring:</strong></p>
+          <pre>GRAPHCOLOR(G, k, color[], v):
+  if v == V:                      // all vertices colored
+    print color[]
+    return
+  for c = 1 to k:
+    if isSafe(G, color, v, c):
+      color[v] = c
+      GRAPHCOLOR(G, k, color, v+1)
+      color[v] = 0                // BACKTRACK (uncolor)
+
+isSafe(G, color, v, c):
+  for each neighbor u of v in G:
+    if color[u] == c: return false  // conflict
+  return true
+
+Main:
+  color[] = {0, 0, ..., 0}       // all uncolored
+  GRAPHCOLOR(G, k, color, 0)</pre>
+
+          <p><strong>(c) Is it solvable in polynomial time?</strong></p>
+          <p><strong>No.</strong> Graph coloring (for k ≥ 3) is NP-complete. The backtracking algorithm has exponential worst-case time complexity O(k^V · V) since we try up to k colors for each of V vertices. No polynomial-time algorithm is known. Even determining if a graph is 3-colorable is NP-complete (proven via reduction from SAT).</p>
+
+          <p><strong>(d) All solutions for the triangle graph (vertices 1-2-3, fully connected) with 3 colors:</strong></p>
+          <p>Since all three vertices are mutually adjacent (K₃), all three must get different colors. With colors {R, G, B}:</p>
+          <table>
+            <tr><th>Vertex 1</th><th>Vertex 2</th><th>Vertex 3</th></tr>
+            <tr><td>R</td><td>G</td><td>B</td></tr>
+            <tr><td>R</td><td>B</td><td>G</td></tr>
+            <tr><td>G</td><td>R</td><td>B</td></tr>
+            <tr><td>G</td><td>B</td><td>R</td></tr>
+            <tr><td>B</td><td>R</td><td>G</td></tr>
+            <tr><td>B</td><td>G</td><td>R</td></tr>
+          </table>
+          <div class="result">Total valid colorings = 3! = 6. Chromatic number χ(K₃) = 3.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end y25 -->
+
+  <!-- ============ 2023-24 ============ -->
+  <div id="y24" class="year-panel">
+
+    <div class="group-label">Group A — Very Short Answer (1 mark each)</div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(i) Appropriate data structure for Prim's MST algorithm?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Min-Heap (Priority Queue)</strong> — to efficiently extract the minimum weight edge at each step. Gives O(E log V) time complexity.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(ii) What is represented by asymptotic notation O(1)?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Constant time complexity</strong> — execution time does not depend on input size. Example: accessing an array element by index, push/pop on a stack.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(iii) Time complexity for T(n) = 2T(n/2) + n</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p>By Master Theorem: a=2, b=2, f(n)=n. n^(log₂2)=n¹=n. Since f(n)=Θ(n)=Θ(n^log_b(a)) → Case 2. <strong>T(n) = O(n log n)</strong></p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(iv) Ω(n) is the formal way to express the ___ bound.</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Lower bound</strong> — Ω(g(n)) means f(n) ≥ c·g(n) for some c > 0 and all sufficiently large n.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(v) Fractional Knapsack solved by which technique?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Greedy method</strong> — sort by profit/weight ratio, fill greedily. Works because items are divisible.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(vi) DFS data structure?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Stack</strong> (LIFO)</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(vii) Algorithm used to solve maximum flow?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Ford-Fulkerson algorithm</strong> (uses augmenting paths). With BFS = Edmonds-Karp: O(VE²).</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(viii) How many solutions for 8-Queens on 8×8 board?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>92 distinct solutions</strong> (including rotations and reflections). 12 fundamentally different solutions.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(ix) Time complexity of Heap Sort with n items?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>O(n log n)</strong> — for best, average, and worst case.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(x) 0-1 Knapsack can be solved by Greedy — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-f">FALSE</span> — Greedy fails for 0-1 Knapsack. Items cannot be split, so selecting the highest ratio item might not be optimal. <strong>Dynamic Programming</strong> is required: O(nW).</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(xi) Algorithm for single source shortest path with negative edge weights?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Bellman-Ford algorithm</strong> — O(VE). Handles negative weights; also detects negative cycles. Dijkstra cannot handle negative edges.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(xii) Fractional knapsack: items {(40,20),(30,10),(20,5)}, capacity=20</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p>Ratios: 40/20=2.0, 30/10=3.0, 20/5=4.0. Sort: (20,5)→(30,10)→(40,20)</p>
+      <p>Take (20,5): 5kg, value 20. Remaining=15. Take (30,10): 10kg, value 30. Remaining=5. Take (40,20): 5/20=0.25 fraction → value=10.</p>
+      <div class="result">Maximum value = 20 + 30 + 10 = 60</div>
+    </div></div></div>
+
+    <div class="group-label">Group B — Short Answer (5 marks each)</div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q2: Dijkstra vs Bellman-Ford — differences and time complexities</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <table>
+        <tr><th>Property</th><th>Dijkstra</th><th>Bellman-Ford</th></tr>
+        <tr><td>Approach</td><td>Greedy (always pick min dist vertex)</td><td>Dynamic Programming (relax all edges)</td></tr>
+        <tr><td>Negative edges</td><td>❌ Fails with negative weights</td><td>✅ Handles negative weights</td></tr>
+        <tr><td>Negative cycles</td><td>Cannot detect</td><td>✅ Detects negative cycles</td></tr>
+        <tr><td>Time (adj matrix)</td><td>O(V²)</td><td>O(VE)</td></tr>
+        <tr><td>Time (min-heap)</td><td>O(E log V)</td><td>O(VE)</td></tr>
+        <tr><td>Iterations</td><td>V iterations, pick min each time</td><td>V−1 iterations over all E edges</td></tr>
+        <tr><td>Use case</td><td>Road networks, non-negative weights</td><td>Network routing, currency exchange</td></tr>
+      </table>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q3: Quick Sort — best and worst case using recurrence relations</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>Best Case (pivot divides equally):</strong></p>
+      <pre>T(n) = 2T(n/2) + O(n)      // two equal halves + partition
+a=2, b=2, f(n)=n, n^(log₂2)=n → Case 2 of Master Theorem
+T(n) = O(n log n)</pre>
+      <p><strong>Worst Case (pivot is always min or max — sorted input):</strong></p>
+      <pre>T(n) = T(n−1) + T(0) + O(n) = T(n−1) + O(n)
+T(n) = O(n) + O(n−1) + ... + O(1) = O(n(n+1)/2) = O(n²)</pre>
+      <p><strong>Average Case:</strong></p>
+      <pre>T(n) = (1/n) Σ(k=0 to n−1)[T(k)+T(n−k−1)] + Θ(n)
+Solving this recurrence: T(n) = O(n log n)</pre>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q4: Floyd-Warshall Algorithm for all-pairs shortest path</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>Algorithm:</strong></p>
+      <pre>FLOYD-WARSHALL(W, n):
+  // W is n×n weight matrix; W[i][i]=0, W[i][j]=∞ if no edge
+  D = W                         // D will hold shortest distances
+  P = adjacency matrix (for path reconstruction, optional)
+  for k = 1 to n:               // intermediate vertex
+    for i = 1 to n:             // source
+      for j = 1 to n:           // destination
+        if D[i][k] + D[k][j] < D[i][j]:
+          D[i][j] = D[i][k] + D[k][j]
+  return D</pre>
+      <p><strong>Key idea:</strong> D[i][j] = shortest path from i to j using only vertices {1,...,k} as intermediates.</p>
+      <p><strong>Time: O(V³) &nbsp;|&nbsp; Space: O(V²)</strong></p>
+      <p>Handles negative edge weights. Detects negative cycles if D[i][i] < 0 after completion.</p>
+      <p>Used for: all-pairs shortest path, transitive closure (replace + with OR, min with AND).</p>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q5: Fractional Knapsack — W={3,3,2,5,1}, P={10,15,10,12,8}, capacity=10</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <table>
+        <tr><th>Item</th><th>Weight</th><th>Profit</th><th>P/W Ratio</th><th>Rank</th></tr>
+        <tr><td>1</td><td>3</td><td>10</td><td>3.33</td><td>4th</td></tr>
+        <tr><td>2</td><td>3</td><td>15</td><td>5.00</td><td>2nd</td></tr>
+        <tr><td>3</td><td>2</td><td>10</td><td>5.00</td><td>2nd</td></tr>
+        <tr><td>4</td><td>5</td><td>12</td><td>2.40</td><td>5th</td></tr>
+        <tr><td>5</td><td>1</td><td>8</td><td>8.00</td><td>1st</td></tr>
+      </table>
+      <p>Selection order: 5→2→3→1→4</p>
+      <table>
+        <tr><th>Step</th><th>Item</th><th>Weight taken</th><th>Profit</th><th>Remaining capacity</th></tr>
+        <tr><td>1</td><td>5</td><td>1 (full)</td><td>8</td><td>9</td></tr>
+        <tr><td>2</td><td>2</td><td>3 (full)</td><td>15</td><td>6</td></tr>
+        <tr><td>3</td><td>3</td><td>2 (full)</td><td>10</td><td>4</td></tr>
+        <tr><td>4</td><td>1</td><td>3 (full)</td><td>10</td><td>1</td></tr>
+        <tr><td>5</td><td>4</td><td>1/5 (fraction)</td><td>2.4</td><td>0</td></tr>
+      </table>
+      <div class="result">Maximum profit = 8 + 15 + 10 + 10 + 2.4 = 45.4</div>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q6: Randomized Algorithms — short note</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p>A <strong>randomized algorithm</strong> uses random number generation to make decisions during execution. The output or runtime may vary between runs on the same input.</p>
+      <p><strong>Two types:</strong></p>
+      <table>
+        <tr><th>Type</th><th>Output</th><th>Runtime</th><th>Example</th></tr>
+        <tr><td>Las Vegas</td><td>Always correct</td><td>Random (expected poly)</td><td>Randomized QuickSort, Randomized Search</td></tr>
+        <tr><td>Monte Carlo</td><td>Possibly incorrect (small prob)</td><td>Deterministic (fixed)</td><td>Miller-Rabin primality test, Monte Carlo π estimation</td></tr>
+      </table>
+      <p><strong>Advantages:</strong> Simple implementation; avoids worst-case adversarial inputs; often matches or beats deterministic algorithms on average; useful where deterministic polynomial solutions are unknown.</p>
+      <p><strong>Example — Randomized QuickSort:</strong> Choose pivot randomly → expected O(n log n) always, even on sorted input.</p>
+    </div></div></div>
+
+    <div class="group-label">Group C — Long Answer (15 marks each)</div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q7: Matrix Chain Multiplication A(10×20)×B(20×50)×C(50×1)×D(1×100) + Bellman-Ford + DP pros/cons</span><span class="qa-marks">7+5+3 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Matrix Chain Multiplication — DP:</strong></p>
+      <p>Dimension array: p = [10, 20, 50, 1, 100]. m[i][j] = min multiplications to compute Aᵢ…Aⱼ</p>
+      <pre>Base: m[i][i] = 0 for all i.
+
+l=2 (chains of 2):
+m[1][2] = p[0]·p[1]·p[2] = 10×20×50 = 10000
+m[2][3] = p[1]·p[2]·p[3] = 20×50×1  = 1000
+m[3][4] = p[2]·p[3]·p[4] = 50×1×100 = 5000
+
+l=3 (chains of 3):
+m[1][3]: k=1: m[1][1]+m[2][3]+p[0]·p[1]·p[3] = 0+1000+10×20×1 = 1200
+         k=2: m[1][2]+m[3][3]+p[0]·p[2]·p[3] = 10000+0+10×50×1 = 10500
+  → m[1][3] = 1200  (split after A)
+
+m[2][4]: k=2: m[2][2]+m[3][4]+p[1]·p[2]·p[4] = 0+5000+20×50×100 = 105000
+         k=3: m[2][3]+m[4][4]+p[1]·p[3]·p[4] = 1000+0+20×1×100  = 3000
+  → m[2][4] = 3000  (split after BC)
+
+l=4 (full chain):
+m[1][4]: k=1: m[1][1]+m[2][4]+p[0]·p[1]·p[4] = 0+3000+10×20×100 = 23000
+         k=2: m[1][2]+m[3][4]+p[0]·p[2]·p[4] = 10000+5000+10×50×100 = 65000
+         k=3: m[1][3]+m[4][4]+p[0]·p[3]·p[4] = 1200+0+10×1×100   = 2200
+  → m[1][4] = 2200  (split after ABC)</pre>
+      <div class="result">Minimum multiplications = 2200 &nbsp;|&nbsp; Optimal: ((A × (B × C)) × D)</div>
+
+      <p><strong>(b) Bellman-Ford Algorithm (negative edges allowed):</strong></p>
+      <pre>BELLMAN-FORD(G, s):
+  dist[s] = 0; dist[v] = ∞ for all v ≠ s
+  pred[v] = NULL for all v
+
+  for i = 1 to |V| − 1:                 // V−1 iterations
+    for each edge (u, v, w) in E:
+      if dist[u] + w < dist[v]:
+        dist[v] = dist[u] + w           // relax edge
+        pred[v] = u
+
+  // Check for negative cycle
+  for each edge (u, v, w) in E:
+    if dist[u] + w < dist[v]:
+      print "Negative cycle detected"
+      return false
+
+  return dist[], pred[]</pre>
+      <p>Time: <strong>O(VE)</strong>. Space: O(V). Correct answer guaranteed after V−1 passes if no negative cycle.</p>
+
+      <p><strong>(c) DP — Advantages and Drawbacks:</strong></p>
+      <table>
+        <tr><th>Advantages</th><th>Drawbacks</th></tr>
+        <tr><td>Guarantees optimal solution (principle of optimality)</td><td>High memory usage (stores all subproblem results)</td></tr>
+        <tr><td>Avoids recomputation via memoization</td><td>Requires problem to have optimal substructure</td></tr>
+        <tr><td>Works where Greedy fails (e.g., 0-1 Knapsack)</td><td>Table-filling can be slow for large input</td></tr>
+        <tr><td>Clear, systematic formulation</td><td>Harder to formulate than Greedy</td></tr>
+      </table>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q8: Algorithm features + Asymptotic notations + Towers of Hanoi</span><span class="qa-marks">3+5+7 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Features of an Algorithm:</strong> Input, Output, Definiteness, Finiteness, Effectiveness + Correctness, Efficiency. (See 2024-25 Q4 for full answer.)</p>
+      <p><strong>(b) All Asymptotic Notations:</strong></p>
+      <table>
+        <tr><th>Notation</th><th>Name</th><th>Meaning</th><th>Formal Definition</th></tr>
+        <tr><td>O(g)</td><td>Big-Oh</td><td>Upper bound</td><td>∃c,n₀: f(n) ≤ c·g(n) ∀n≥n₀</td></tr>
+        <tr><td>Ω(g)</td><td>Big-Omega</td><td>Lower bound</td><td>∃c,n₀: f(n) ≥ c·g(n) ∀n≥n₀</td></tr>
+        <tr><td>Θ(g)</td><td>Big-Theta</td><td>Tight bound</td><td>O(g) ∩ Ω(g) — f grows at same rate as g</td></tr>
+        <tr><td>o(g)</td><td>Little-oh</td><td>Strict upper bound</td><td>lim f(n)/g(n) = 0</td></tr>
+        <tr><td>ω(g)</td><td>Little-omega</td><td>Strict lower bound</td><td>lim f(n)/g(n) = ∞</td></tr>
+      </table>
+      <p>Importance: allows us to compare algorithm efficiency without machine-specific constants; focuses on growth rate for large inputs.</p>
+      <p><strong>(c) Towers of Hanoi — recurrence and solution:</strong></p>
+      <pre>Problem: Move n disks from peg A to C using B, following rules.
+Recurrence: T(n) = 2T(n−1) + 1,  T(1) = 1
+
+Solving by expansion (back-substitution):
+T(n) = 2T(n−1) + 1
+     = 2[2T(n−2)+1] + 1 = 4T(n−2) + 3
+     = 2²T(n−2) + 2¹ + 2⁰
+     = 2³T(n−3) + 2² + 2¹ + 2⁰
+     ...
+     = 2^(n−1)T(1) + 2^(n−2) + ... + 2⁰
+     = 2^(n−1) + (2^(n−1) − 1)
+     = 2ⁿ − 1</pre>
+      <div class="result">T(n) = 2ⁿ − 1 = O(2ⁿ) — exponential complexity.</div>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q9: Job Sequencing (algorithm + numerical) + Spanning tree + Prim's MST trace</span><span class="qa-marks">4+5+2+4 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Greedy Algorithm for Job Sequencing with Deadline:</strong></p>
+      <pre>JOB-SEQUENCING(jobs[], n):
+  Sort jobs in decreasing order of profit
+  maxDeadline = max(d[i] for all i)
+  slot[1..maxDeadline] = {-1}    // all slots empty
+  result = {}
+
+  for each job i in sorted order:
+    // Find latest available slot ≤ d[i]
+    for t = d[i] down to 1:
+      if slot[t] == -1:
+        slot[t] = i
+        result = result ∪ {i}
+        break
+
+  return result, total_profit</pre>
+      <p><strong>(b) Numerical: n=4, P=(100,10,5,27), D=(2,1,2,1)</strong></p>
+      <table>
+        <tr><th>Job</th><th>Profit</th><th>Deadline</th></tr>
+        <tr><td>J1</td><td>100</td><td>2</td></tr>
+        <tr><td>J2</td><td>10</td><td>1</td></tr>
+        <tr><td>J3</td><td>5</td><td>2</td></tr>
+        <tr><td>J4</td><td>27</td><td>1</td></tr>
+      </table>
+      <p>Sort by profit: J1(100) → J4(27) → J2(10) → J3(5)</p>
+      <pre>Slots: [_, _]  (t=1, t=2)
+
+J1 (d=2): Latest free slot ≤ 2 = slot 2. Assign. → [_, J1]
+J4 (d=1): Latest free slot ≤ 1 = slot 1. Assign. → [J4, J1]
+J2 (d=1): No free slot ≤ 1. SKIP.
+J3 (d=2): No free slot ≤ 2. SKIP.</pre>
+      <div class="result">Schedule: J4, J1 &nbsp;|&nbsp; Maximum Profit = 27 + 100 = 127</div>
+
+      <p><strong>(c) Spanning Tree:</strong> A spanning tree of connected graph G=(V,E) is a subgraph that is a tree (connected, acyclic) and contains all V vertices. It has exactly V−1 edges. A graph with V vertices can have multiple spanning trees.</p>
+
+      <p><strong>(d) Prim's Algorithm — trace from the given graph:</strong></p>
+      <p>Start from any vertex (say vertex 1). At each step, add the minimum weight edge connecting a visited vertex to an unvisited vertex.</p>
+      <div class="step"><span class="step-num">1.</span><span class="step-txt">Start: MST = {1}. Find min edge from {1}: 1→2(2) or other edges. Add min.</span></div>
+      <div class="step"><span class="step-num">2.</span><span class="step-txt">Add chosen vertex. New candidate edges added to priority queue.</span></div>
+      <div class="step"><span class="step-num">3.</span><span class="step-txt">Repeat until all V vertices in MST. V−1 edges added total.</span></div>
+      <div class="note">Apply these steps to the specific graph in the paper using the edge weights shown. Always pick the globally minimum edge from the frontier.</div>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q10: P / NP / NP-hard / NP-complete + Reducibility + P=NP implications</span><span class="qa-marks">7+3+5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) P, NP, NP-hard, NP-complete:</strong></p>
+      <table>
+        <tr><th>Class</th><th>Definition</th><th>Examples</th></tr>
+        <tr><td><strong>P</strong></td><td>Decision problems solvable by a deterministic TM in polynomial time.</td><td>Sorting, MST, shortest path, max flow</td></tr>
+        <tr><td><strong>NP</strong></td><td>Decision problems whose solutions can be <em>verified</em> in polynomial time. P ⊆ NP.</td><td>SAT, Hamiltonian cycle, 3-coloring</td></tr>
+        <tr><td><strong>NP-hard</strong></td><td>At least as hard as the hardest NP problems. Every NP problem reduces to it in poly time. May not be in NP.</td><td>TSP optimization, Halting problem</td></tr>
+        <tr><td><strong>NP-complete</strong></td><td>NP ∩ NP-hard. In NP AND every NP problem poly-reduces to it.</td><td>SAT, 3-SAT, Vertex Cover, Clique, Knapsack (decision)</td></tr>
+      </table>
+      <p>Diagram: P ⊆ NP. NP-complete ⊆ NP. NP-hard ⊇ NP-complete. If P≠NP, P and NP-complete are disjoint.</p>
+
+      <p><strong>(b) Reducibility:</strong></p>
+      <p>Problem A is <strong>polynomial-time reducible</strong> to problem B (written A ≤ₚ B) if there exists a polynomial-time transformation f such that any instance x of A maps to instance f(x) of B where: x ∈ A ⟺ f(x) ∈ B.</p>
+      <p>Implications: If B ∈ P and A ≤ₚ B → A ∈ P. If A is NP-hard and A ≤ₚ B → B is NP-hard. Used to prove NP-completeness.</p>
+
+      <p><strong>(c) If P = NP:</strong></p>
+      <ul>
+        <li>Every problem whose solution is <em>verifiable</em> in poly time would also be <em>solvable</em> in poly time.</li>
+        <li>All NP-complete problems (SAT, TSP, etc.) would have polynomial solutions.</li>
+        <li><strong>Cryptography collapses:</strong> RSA, AES security relies on factoring/discrete log being hard — these would become easy.</li>
+        <li>AI and optimization: protein folding, drug discovery, scheduling would be solved optimally and quickly.</li>
+        <li>Currently unproven; Clay Millennium Prize ($1M) awaits a proof or disproof. Most believe P ≠ NP.</li>
+      </ul>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q11: Flow Network + Augmenting Path/Residual Capacity + Ford-Fulkerson Algorithm</span><span class="qa-marks">5+5+5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Flow Network and constraints:</strong></p>
+      <p>A <strong>flow network</strong> G=(V,E) is a directed graph with: a source s (no incoming edges from network) and a sink t (no outgoing edges to network). Each edge (u,v) has capacity c(u,v) ≥ 0.</p>
+      <p>A <strong>flow</strong> f must satisfy three constraints:</p>
+      <ol>
+        <li><strong>Capacity constraint:</strong> 0 ≤ f(u,v) ≤ c(u,v) for all (u,v) ∈ E</li>
+        <li><strong>Flow conservation:</strong> For all v ≠ s,t: Σf(u,v) = Σf(v,w) (inflow = outflow)</li>
+        <li><strong>Skew symmetry:</strong> f(u,v) = −f(v,u)</li>
+      </ol>
+      <p>Value of flow: |f| = Σ f(s,v) for all v.</p>
+
+      <p><strong>(b) Augmenting Path and Residual Capacity:</strong></p>
+      <p><strong>Residual capacity:</strong> cₓ(u,v) = c(u,v) − f(u,v). The <strong>residual graph</strong> Gₓ contains edge (u,v) if cₓ(u,v) > 0, plus reverse edge (v,u) with cₓ(v,u) = f(u,v).</p>
+      <p><strong>Augmenting path:</strong> A simple path from s to t in Gₓ where every edge has positive residual capacity. The <strong>bottleneck</strong> = min cₓ on the path. Sending bottleneck flow along this path increases total flow.</p>
+      <p><strong>Max-flow Min-cut theorem:</strong> Maximum flow value = minimum cut capacity.</p>
+
+      <p><strong>(c) Ford-Fulkerson Algorithm:</strong></p>
+      <pre>FORD-FULKERSON(G, s, t):
+  Initialize f(u,v) = 0 for all edges (u,v)
+
+  while ∃ augmenting path p from s to t in residual graph Gf:
+    cₓ(p) = min{cₓ(u,v) : (u,v) in p}   // bottleneck
+    for each edge (u,v) in p:
+      f(u,v) = f(u,v) + cₓ(p)            // send flow
+      f(v,u) = f(v,u) − cₓ(p)            // update reverse
+
+  return f    // maximum flow</pre>
+      <p>Time: O(E × |f*|) where f* = max flow. If BFS used (Edmonds-Karp): <strong>O(VE²)</strong>.</p>
+    </div></div></div>
+  </div><!-- end y24 -->
+
+  <!-- ============ 2022-23 ============ -->
+  <div id="y23" class="year-panel">
+
+    <div class="group-label">Group A — Very Short Answer (1 mark each)</div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(I) Approximation algorithm guarantees best quality — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-f">FALSE</span> — Approximation algorithms guarantee a solution <em>within a ratio</em> of optimal (e.g., ≤ 2×OPT), not the optimal itself. Brute force guarantees best quality; approximation trades quality for polynomial time.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(II) O(log n) > O(n) — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-f">FALSE</span> — O(log n) &lt; O(n). Logarithmic growth is slower than linear. O(log n) is a subset of O(n).</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(III) Time complexity of Knapsack (Greedy)?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>O(n log n)</strong> — dominated by sorting items by profit/weight ratio.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(IV) Adjacency matrix and Path matrix are same — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-f">FALSE</span> — Adjacency matrix: A[i][j]=1 if direct edge (i,j) exists. Path matrix (reachability/transitive closure): P[i][j]=1 if any path (direct or indirect) exists from i to j. They differ wherever indirect paths exist.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(V) Ordered searching algorithm is a Polynomial Algorithm — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-t">TRUE</span> — Binary search (ordered searching) runs in O(log n) time, which is polynomial (actually sub-linear). Any O(nᵏ) algorithm for constant k is polynomial.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(VI) Brute Force method gives best quality of solution — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-t">TRUE</span> — Brute force exhaustively searches all possible solutions, so it always finds the optimal. It guarantees the best quality — at the cost of exponential or worse time complexity.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(VII) Travelling Salesman Problem is a Non-Polynomial problem — True or False?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><span class="chip chip-t">TRUE</span> — TSP (optimization version) is NP-hard. The decision version ("Is there a tour of cost ≤ k?") is NP-complete. No polynomial-time algorithm is known.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(VIII) Name one heuristic method of searching.</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>Interpolation Search</strong> — uses the value of the target to estimate position, unlike binary search which always splits in half. Works best on uniformly distributed data. O(log log n) average, O(n) worst.</p><p><em>Other acceptable: Jump Search, Fibonacci Search.</em></p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(IX) Best case time complexity of Binary Search?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>O(1)</strong> — the target element is found at the midpoint on the very first comparison.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(X) Time complexity of Floyd's algorithm?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>O(V³)</strong> — three nested loops over all V vertices. Space: O(V²).</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(XI) Backtracking follows ___ traversal technique.</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p><strong>DFS (Depth First Search)</strong> — it explores each branch of the state-space tree fully before backtracking to try another branch.</p></div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">(XII) What is a spanning tree?</span><span class="qa-marks">1 mark</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans"><p>A <strong>spanning tree</strong> of a connected undirected graph G=(V,E) is a subgraph that: (1) is a tree (connected and acyclic), (2) includes all V vertices, (3) has exactly V−1 edges. Multiple spanning trees may exist for one graph.</p></div></div></div>
+
+    <div class="group-label">Group B — Short Answer (5 marks each)</div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q2: Job Sequencing with Deadline — Greedy algorithm + time complexity</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <pre>JOB-SEQUENCING(jobs, n):
+  Sort jobs by profit in DECREASING order
+  maxD = max deadline among all jobs
+  slot[1..maxD] = {EMPTY}
+  result = {}; totalProfit = 0
+
+  for each job j in sorted order:
+    // Assign to latest available slot ≤ d[j]
+    for t = d[j] down to 1:
+      if slot[t] == EMPTY:
+        slot[t] = j
+        result.add(j)
+        totalProfit += profit[j]
+        break
+  return result, totalProfit</pre>
+      <p><strong>Time Complexity: O(n²)</strong> — sorting is O(n log n), slot search is O(n) per job × n jobs = O(n²). With Union-Find: O(n log n) overall.</p>
+      <p><strong>Correctness:</strong> Always prefer higher-profit jobs (greedy choice). Schedule them as late as possible (to leave earlier slots open for jobs with tighter deadlines).</p>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q3: Maximum Flow — Ford-Fulkerson on given network (step by step)</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p>Source = 1, Sink = 6. Apply Ford-Fulkerson:</p>
+      <div class="step"><span class="step-num">1.</span><span class="step-txt">Initialize all flows to 0. Draw residual graph = original graph.</span></div>
+      <div class="step"><span class="step-num">2.</span><span class="step-txt">Find an augmenting path (BFS/DFS) from source 1 to sink 6 in residual graph.</span></div>
+      <div class="step"><span class="step-num">3.</span><span class="step-txt">Find bottleneck = min capacity on path. Send that much flow.</span></div>
+      <div class="step"><span class="step-num">4.</span><span class="step-txt">Update residual capacities: forward edge decreases, reverse edge increases.</span></div>
+      <div class="step"><span class="step-num">5.</span><span class="step-txt">Repeat until no augmenting path exists. Max flow = total flow sent.</span></div>
+      <div class="note">For the specific network in the paper (nodes 1-6, capacities 27,24,18,15,6,10,8,8,15,18): Apply the steps above sequentially. Each augmenting path adds to total flow. Stop when source vertex 1 has no more reachable paths to sink 6 in the residual graph.</div>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q4: Prim's Algorithm (Greedy) for MST — algorithm + time complexity</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <pre>PRIMS-MST(G, start):
+  key[v] = ∞ for all v; key[start] = 0
+  parent[v] = NULL for all v
+  inMST[v] = false for all v
+  MST = {}
+
+  for i = 1 to V:
+    u = vertex with minimum key[] not yet in MST
+    inMST[u] = true
+    MST.add(u, parent[u])
+
+    for each neighbor v of u:
+      if inMST[v] == false and weight(u,v) < key[v]:
+        key[v] = weight(u,v)
+        parent[v] = u
+
+  return MST</pre>
+      <p><strong>Time Complexity:</strong></p>
+      <ul>
+        <li>O(V²) using adjacency matrix (linear scan for min key)</li>
+        <li>O(E log V) using binary min-heap priority queue</li>
+        <li>O(E + V log V) using Fibonacci heap</li>
+      </ul>
+      <p>Produces a Minimum Spanning Tree with V−1 edges and minimum total weight.</p>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q5: Cook's Theorem + Clique definition with example</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Cook's Theorem (1971):</strong></p>
+      <p>The Boolean Satisfiability Problem (SAT) is NP-complete. Specifically: Every problem in NP can be polynomial-time reduced to SAT.</p>
+      <p>SAT: Given a boolean formula in CNF (Conjunctive Normal Form), is there an assignment of variables that makes it TRUE?</p>
+      <p>Significance: SAT was the <em>first</em> problem proven NP-complete. All subsequent NP-completeness proofs reduce from SAT (or a derived problem like 3-SAT).</p>
+
+      <p><strong>(b) Clique:</strong></p>
+      <p>A <strong>clique</strong> in undirected graph G=(V,E) is a subset C ⊆ V such that every two distinct vertices in C are connected by an edge — i.e., C induces a complete subgraph.</p>
+      <p><strong>k-Clique problem:</strong> Does G contain a clique of size k? This is NP-complete.</p>
+      <p><strong>Example:</strong> In graph with vertices {A,B,C,D} and edges {AB, AC, BC, BD}:</p>
+      <ul>
+        <li>{A,B,C} is a clique of size 3 (all pairs connected: AB, AC, BC ✓)</li>
+        <li>{A,B,C,D} is NOT a clique (AD and CD edges missing)</li>
+        <li>Maximum clique = {A,B,C}, size 3</li>
+      </ul>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q6: Brute Force Algorithm + Approximation Algorithm</span><span class="qa-marks">5 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(i) Brute Force Algorithm:</strong></p>
+      <p>An exhaustive search strategy that tries every possible solution and selects the best. It does not exploit any structure of the problem.</p>
+      <p>Characteristics: Always produces the optimal solution. Very slow — typically O(n²), O(n!), or O(2ⁿ). Useful as a baseline or when n is small.</p>
+      <p>Examples: Finding all permutations for TSP (O(n!)), checking all pairs for closest pair (O(n²)), sequential search.</p>
+
+      <p><strong>(ii) Approximation Algorithm:</strong></p>
+      <p>A polynomial-time algorithm that finds a solution <em>provably close</em> to optimal for NP-hard problems. Trade-off: gives up optimality to gain tractability.</p>
+      <p>Characterized by <strong>approximation ratio ρ(n)</strong>: the worst-case ratio of algorithm output to OPT.</p>
+      <p>Examples: 2-approximation for Vertex Cover, FFD for Bin-Packing (11/9 ratio), greedy (1−1/e) for Set Cover.</p>
+      <table>
+        <tr><th></th><th>Brute Force</th><th>Approximation</th></tr>
+        <tr><td>Optimality</td><td>Guaranteed optimal</td><td>Within ratio of optimal</td></tr>
+        <tr><td>Time</td><td>Exponential</td><td>Polynomial</td></tr>
+        <tr><td>Use</td><td>Small inputs, baseline</td><td>Large NP-hard instances</td></tr>
+      </table>
+    </div></div></div>
+
+    <div class="group-label">Group C — Long Answer (15 marks each)</div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q7: Prim's MST trace + N-Queens backtracking + Floyd-Warshall</span><span class="qa-marks">6+4+1+4 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Prim's MST — trace from given graph:</strong></p>
+      <p>Vertices: 1,2,3,4,5,6,7. Edges from the figure: 1-2(28), 1-6(10), 2-7(14), 2-3(16), 6-7(24), 6-5(25), 7-5(18), 7-3(some), 5-4(22), 3-4(12).</p>
+      <table>
+        <tr><th>Step</th><th>MST so far</th><th>Edge added</th><th>Weight</th></tr>
+        <tr><td>1</td><td>{1}</td><td>1-6</td><td>10</td></tr>
+        <tr><td>2</td><td>{1,6}</td><td>6-7 (min from {1,6})</td><td>24</td></tr>
+        <tr><td>3</td><td>{1,6,7}</td><td>7-2 (14 &lt; 28)</td><td>14</td></tr>
+        <tr><td>4</td><td>{1,6,7,2}</td><td>2-3 (16)</td><td>16</td></tr>
+        <tr><td>5</td><td>{1,6,7,2,3}</td><td>3-4 (12)</td><td>12</td></tr>
+        <tr><td>6</td><td>{1,6,7,2,3,4}</td><td>7-5 (18 &lt; 22, 25)</td><td>18</td></tr>
+      </table>
+      <div class="result">MST edges: {1-6, 6-7, 7-2, 2-3, 3-4, 7-5} &nbsp;|&nbsp; Total weight = 10+24+14+16+12+18 = 94</div>
+
+      <p><strong>(b) N-Queens Algorithm using Backtracking:</strong></p>
+      <pre>NQUEENS(board[], row, n):
+  if row == n:
+    PRINT(board)    // found a valid solution
+    return
+  for col = 0 to n−1:
+    if isSafe(board, row, col, n):
+      board[row] = col          // place queen
+      NQUEENS(board, row+1, n)
+      board[row] = −1           // BACKTRACK (remove queen)
+
+isSafe(board, row, col, n):
+  for i = 0 to row−1:
+    if board[i] == col:                   return false // same column
+    if |board[i]−col| == |i−row|:        return false // same diagonal
+  return true</pre>
+
+      <p><strong>(c) Time complexity of N-Queens:</strong> O(n!) in the worst case (no pruning). In practice much better due to early backtracking.</p>
+
+      <p><strong>(d) Floyd-Warshall (All-Pairs Shortest Path):</strong></p>
+      <pre>FLOYD-WARSHALL(D, n):
+  // Initialize D from adjacency matrix
+  for k = 1 to n:
+    for i = 1 to n:
+      for j = 1 to n:
+        D[i][j] = min(D[i][j], D[i][k] + D[k][j])
+  return D</pre>
+      <p>Time: O(V³). Handles negative edges (not negative cycles). D[i][i] &lt; 0 after completion indicates negative cycle.</p>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q8: Quick Sort — algorithm + all case complexities</span><span class="qa-marks">5 + 10 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p>See 2024-25 Q7 — identical question. Algorithm + all three complexity derivations are the same.</p>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q9: Matrix Chain Multiplication (30×35, 35×15, 15×5, 5×10) + Kruskal's + Backtracking vs B&B</span><span class="qa-marks">5+5+3+2 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Matrix Chain Multiplication: A1(30×35), A2(35×15), A3(15×5), A4(5×10)</strong></p>
+      <p>p = [30, 35, 15, 5, 10]</p>
+      <pre>Base: m[i][i] = 0
+
+l=2:
+m[1][2] = 30×35×15 = 15750
+m[2][3] = 35×15×5  = 2625
+m[3][4] = 15×5×10  = 750
+
+l=3:
+m[1][3]:
+  k=1: 0+2625+30×35×5  = 2625+5250 = 7875
+  k=2: 15750+0+30×15×5 = 15750+2250= 18000
+  → m[1][3] = 7875  (split A1 | A2A3)
+
+m[2][4]:
+  k=2: 0+750+35×15×10  = 750+5250  = 6000
+  k=3: 2625+0+35×5×10  = 2625+1750 = 4375
+  → m[2][4] = 4375  (split A2A3 | A4)
+
+l=4:
+m[1][4]:
+  k=1: 0+4375+30×35×10  = 4375+10500 = 14875
+  k=2: 15750+750+30×15×10=16500+4500 = 21000
+  k=3: 7875+0+30×5×10   = 7875+1500  = 9375
+  → m[1][4] = 9375  (split A1A2A3 | A4)</pre>
+      <div class="result">Minimum scalar multiplications = 9375 &nbsp;|&nbsp; Parenthesization: ((A1(A2A3))A4)</div>
+
+      <p><strong>(b) Kruskal's Algorithm (Greedy MST):</strong></p>
+      <pre>KRUSKALS(G):
+  Sort all edges by weight (ascending)
+  Initialize Union-Find (each vertex its own component)
+  MST = {}
+
+  for each edge (u, v, w) in sorted order:
+    if FIND(u) ≠ FIND(v):   // no cycle
+      MST.add((u,v,w))
+      UNION(u, v)
+    if |MST| == V−1: break  // MST complete
+
+  return MST</pre>
+
+      <p><strong>(c) Time complexity of Kruskal's:</strong> O(E log E) — sorting E edges. Union-Find: O(E·α(V)) ≈ O(E). Overall: <strong>O(E log E)</strong>.</p>
+
+      <p><strong>(d) Backtracking vs Branch and Bound:</strong></p>
+      <table>
+        <tr><th>Property</th><th>Backtracking</th><th>Branch and Bound</th></tr>
+        <tr><td>Goal</td><td>Find all/any feasible solutions</td><td>Find optimal solution</td></tr>
+        <tr><td>Traversal</td><td>DFS on state-space tree</td><td>Best-first or BFS/DFS with bounds</td></tr>
+        <tr><td>Pruning</td><td>Prune when constraint violated</td><td>Prune when bound ≥ current best</td></tr>
+        <tr><td>Bounding function</td><td>Not used</td><td>Essential — lower/upper bound computed</td></tr>
+        <tr><td>Problem type</td><td>Decision / enumeration</td><td>Optimization</td></tr>
+        <tr><td>Examples</td><td>N-Queens, Graph Coloring, Sudoku</td><td>TSP, 0-1 Knapsack, Job Scheduling</td></tr>
+      </table>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q10: Transitive closure from A + Graph terminology definitions</span><span class="qa-marks">3+12 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Transitive closure from vertex A:</strong></p>
+      <p>Apply DFS or BFS from A. Mark all reachable vertices. From the graph: A→B, A→C, A→D (direct). Then trace from B: B→E, B→F. From E: E→G. From F: F→G. From D: D→H (if edge exists). From G→H etc.</p>
+      <p>The transitive closure row for A = {A, B, C, D, E, F, G, H} (all reachable from A) — verify from the actual graph edges in the paper.</p>
+
+      <p><strong>(b) Graph Terminology Definitions:</strong></p>
+      <p><strong>(i) Directed graph (Digraph):</strong> G=(V,E) where each edge (u,v) has a direction from u to v. Edge (u,v) ≠ edge (v,u). Represented by arrows.</p>
+      <p><strong>(ii) Undirected graph:</strong> G=(V,E) where edges have no direction. {u,v} = {v,u}. Represented by lines.</p>
+      <p><strong>(iii) In-Degree and Out-Degree:</strong> In-degree of v = number of edges directed INTO v. Out-degree = number directed OUT from v. For undirected graphs, just "degree" = number of incident edges.</p>
+      <p><strong>(iv) Complete Graph (Kₙ):</strong> Every pair of distinct vertices is connected by exactly one edge. Kₙ has n(n−1)/2 edges. Example: K₃ = triangle.</p>
+      <p><strong>(v) Articulation Point (Cut Vertex):</strong> A vertex v in a connected graph G whose removal (along with its edges) increases the number of connected components. Critical for network connectivity analysis.</p>
+      <p><strong>(vi) Bridge (Cut Edge):</strong> An edge (u,v) whose removal disconnects the graph (increases connected components). A bridge is never part of any cycle. Example: In a tree, every edge is a bridge.</p>
+    </div></div></div>
+
+    <div class="qa"><div class="qa-head" onclick="toggle(this)"><span class="qa-q">Q11: Recursion vs Iteration + Master's Theorem (two recurrences) + Little omega</span><span class="qa-marks">3+8+3 marks</span><span class="qa-chevron">▾</span></div><div class="qa-body"><div class="ans">
+      <p><strong>(a) Recursion vs Iteration:</strong></p>
+      <table>
+        <tr><th>Property</th><th>Recursion</th><th>Iteration</th></tr>
+        <tr><td>Mechanism</td><td>Function calls itself</td><td>Loop (for/while/do-while)</td></tr>
+        <tr><td>Termination</td><td>Base case</td><td>Loop condition false</td></tr>
+        <tr><td>Memory</td><td>O(n) stack space (call stack)</td><td>O(1) extra space</td></tr>
+        <tr><td>Speed</td><td>Slower (function call overhead)</td><td>Faster</td></tr>
+        <tr><td>Risk</td><td>Stack overflow for deep recursion</td><td>Infinite loop if condition wrong</td></tr>
+        <tr><td>Best for</td><td>Trees, graphs, divide-and-conquer</td><td>Simple loops, linear processes</td></tr>
+      </table>
+
+      <p><strong>(b) Master's Theorem — T(n) = aT(n/b) + f(n):</strong></p>
+      <p>Three cases based on comparison of f(n) with n^(log_b a):</p>
+      <ul>
+        <li>Case 1: f(n) = O(n^(log_b(a)−ε)) → T(n) = Θ(n^(log_b a))</li>
+        <li>Case 2: f(n) = Θ(n^(log_b a)) → T(n) = Θ(n^(log_b a) · log n)</li>
+        <li>Case 3: f(n) = Ω(n^(log_b(a)+ε)) and regularity holds → T(n) = Θ(f(n))</li>
+      </ul>
+
+      <p><strong>(i) T(n) = 2T(n/4) + n^0.51:</strong></p>
+      <pre>a=2, b=4, n^(log₄2) = n^0.5
+f(n) = n^0.51 vs n^0.5
+
+n^0.51 = Ω(n^(0.5+0.01)) → Case 3 applies
+Check regularity: 2·f(n/4) = 2·(n/4)^0.51 = 2·n^0.51/4^0.51
+                 ≤ c·n^0.51 where c = 2/4^0.51 ≈ 0.98 &lt; 1 ✓</pre>
+      <div class="result">(i) T(n) = Θ(n^0.51)</div>
+
+      <p><strong>(ii) T(n) = √2 · T(n/2) + log n:</strong></p>
+      <pre>a=√2, b=2, n^(log₂√2) = n^(1/2) = n^0.5
+f(n) = log n vs n^0.5
+
+log n = O(n^(0.5−ε)) for any ε &gt; 0 → Case 1 applies</pre>
+      <div class="result">(ii) T(n) = Θ(√n)</div>
+
+      <p><strong>(c) Little omega (ω) notation:</strong></p>
+      <p>f(n) = ω(g(n)) means: for <em>every</em> positive constant c > 0, there exists n₀ such that f(n) > c · g(n) for all n ≥ n₀.</p>
+      <p>Equivalently: lim(n→∞) f(n)/g(n) = ∞ &nbsp;(f grows strictly faster than g)</p>
+      <p>Relation: f(n) = ω(g(n)) ⟺ g(n) = o(f(n))</p>
+      <p><strong>Example:</strong> n² = ω(n log n) because n²/(n log n) = n/log n → ∞ as n → ∞. ✓</p>
+    </div></div></div>
+
+  </div><!-- end y23 -->
+
+</div><!-- end page -->
+
+<script>
+/* ── Year tabs ── */
+function showYear(id) {
+  document.querySelectorAll('.ytab').forEach((t,i) => {
+    t.classList.toggle('active', ['y25','y24','y23'][i] === id);
+  });
+  document.querySelectorAll('.year-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Accordion ── */
+function toggle(head) {
+  const body = head.nextElementSibling;
+  const chevron = head.querySelector('.qa-chevron');
+  const open = body.classList.toggle('open');
+  chevron.classList.toggle('open', open);
+}
+
+/* ── Theme toggle ── */
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('daa-theme', next);
+  document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+
+/* Restore saved theme instantly (before paint) */
+(function() {
+  const saved = localStorage.getItem('daa-theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+
+/* ── DOM enhancements on load ── */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* Wrap bare tables in scrollable containers */
+  document.querySelectorAll('.ans table, .qa-body table').forEach(tbl => {
+    if (tbl.parentElement.classList.contains('table-wrap')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  });
+
+  /* Group .qa-marks + .qa-chevron into .qa-meta */
+  document.querySelectorAll('.qa-head').forEach(head => {
+    const marks   = head.querySelector('.qa-marks');
+    const chevron = head.querySelector('.qa-chevron');
+    if (marks && chevron && !head.querySelector('.qa-meta')) {
+      const meta = document.createElement('div');
+      meta.className = 'qa-meta';
+      head.insertBefore(meta, marks);
+      meta.appendChild(marks);
+      meta.appendChild(chevron);
+    }
+  });
+
+  /* Scroll-to-top button */
+  const topBtn = document.createElement('button');
+  topBtn.id = 'topBtn';
+  topBtn.setAttribute('aria-label', 'Scroll to top');
+  topBtn.textContent = '↑';
+  document.body.appendChild(topBtn);
+  topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('visible', window.scrollY > 320);
+  }, { passive: true });
+
+});
+</script>
+</body>
+</html>
